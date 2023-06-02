@@ -59,23 +59,12 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-namespace :deploy do
-  desc 'Create deployment directory'
-  task :create_deploy_directory do
-    on roles(:all) do
-      execute :sudo, :mkdir, '-p', deploy_to
-      execute :sudo, :chmod, '755', deploy_to
-    end
-  end
-  before :starting, :create_deploy_directory
-end
 server "54.169.57.31",
   user: "ubuntu",
-  roles: %w{web app},
+  roles: %w{app},
   ssh_options: {
     user: "ubuntu", # overrides user setting above
     keys: "/Users/mfv-computer-0091/Desktop/RemiAssigProject/video-sharing.pem",
-    forward_agent: false,
     auth_methods: %w(publickey password)
     # password: "please use keys"
   }
